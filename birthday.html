@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, My Princess! 👑💕</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ffb8d9 0%, #ff9ec0 50%, #ff85ac 100%);
+            min-height: 100vh;
+            overflow-x: hidden;
+            color: #5a2d43;
+        }
+        
+        /* Floating hearts animation */
+        .hearts-container {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .heart {
+            position: absolute;
+            color: rgba(255, 105, 180, 0.7);
+            font-size: 20px;
+            animation: float 8s linear infinite;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Main container */
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 30px;
+        }
+        
+        /* Header section */
+        .header {
+            text-align: center;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(188, 84, 126, 0.3);
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-out;
+        }
+        
+        .birthday-title {
+            font-size: 3.2rem;
+            color: #ff4d8d;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 0px rgba(255, 182, 193, 0.4);
+        }
+        
+        .birthday-title i {
+            color: #ff1493;
+            animation: pulse 2s infinite;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            color: #c44569;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+        
+        /* Single large photo section */
+        .single-photo-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .photo-title {
+            font-size: 2rem;
+            color: #ff4d8d;
+            margin-bottom: 25px;
+            font-family: 'Georgia', serif;
+        }
+        
+        .main-photo-frame {
+            position: relative;
+            max-width: 600px;
+            margin: 0 auto;
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+            transition: transform 0.5s, box-shadow 0.5s;
+            cursor: pointer;
+            border: 5px solid white;
+        }
+        
+        .main-photo-frame:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
+        }
+        
+        .main-photo-frame img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.7s;
+        }
+        
+        .main-photo-frame:hover img {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(255, 105, 180, 0.95), transparent);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.4rem;
+            font-weight: bold;
+            font-family: 'Georgia', serif;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+        }
+        
+        /* Photo placeholder styling */
+        .photo-placeholder {
+            height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #ff9ec0, #ff85ac);
+            color: white;
+        }
+        
+        .photo-placeholder i {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        
+        .photo-placeholder p {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        
+        /* Message card */
+        .message-card {
+            background: white;
+            border-radius: 25px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(188, 84, 126, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .message-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 10px;
+            height: 100%;
+            background: linear-gradient(to bottom, #ff9ec0, #ff4d8d);
+        }
+        
+        .message-card h2 {
+            color: #ff4d8d;
+            font-size: 2.2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .message-text {
+            font-size: 1.2rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+            color: #555;
+        }
+        
+        .signature {
+            text-align: right;
+            font-style: italic;
+            font-size: 1.4rem;
+            color: #ff4d8d;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        
+        /* Apology card */
+        .apology-card {
+            background: linear-gradient(135deg, #f8e1e7, #f9d6e0);
+            border-radius: 25px;
+            padding: 35px;
+            margin: 40px 0;
+            box-shadow: 0 10px 30px rgba(188, 84, 126, 0.2);
+            border: 3px dashed #ff85ac;
+        }
+        
+        .apology-card h2 {
+            color: #c44569;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Surprise button */
+        .surprise-section {
+            text-align: center;
+            margin: 50px 0;
+        }
+        
+        .surprise-btn {
+            background: linear-gradient(to right, #ff4d8d, #ff9ec0);
+            color: white;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.4rem;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s;
+            box-shadow: 0 10px 20px rgba(255, 77, 141, 0.4);
+            display: inline-flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .surprise-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 30px rgba(255, 77, 141, 0.6);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 30px;
+            color: white;
+            font-size: 1.1rem;
+            margin-top: 30px;
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(30px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+        
+        @keyframes pulse {
+            0% { 
+                transform: scale(1); 
+            }
+            50% { 
+                transform: scale(1.1); 
+            }
+            100% { 
+                transform: scale(1); 
+            }
+        }
+        
+        .animate {
+            animation: fadeIn 1s ease-out;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .birthday-title {
+                font-size: 2.5rem;
+            }
+            
+            .main-photo-frame {
+                max-width: 90%;
+            }
+            
+            .main-photo-frame img {
+                height: 300px;
+            }
+            
+            .photo-placeholder {
+                height: 300px;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            .photo-title {
+                font-size: 1.8rem;
+            }
+            
+            .photo-caption {
+                font-size: 1.2rem;
+                padding: 15px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .main-photo-frame img {
+                height: 250px;
+            }
+            
+            .photo-placeholder {
+                height: 250px;
+            }
+            
+            .photo-caption {
+                font-size: 1.1rem;
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating hearts background -->
+    <div class="hearts-container" id="heartsContainer"></div>
+    
+    <!-- Main content -->
+    <div class="container">
+        <div class="header">
+            <h1 class="birthday-title">
+                <i class="fas fa-birthday-cake"></i> Happy Birthday My Love! <i class="fas fa-heart"></i>
+            </h1>
+            <p class="subtitle">To the most beautiful girl in my world</p>
+            <p class="subtitle">Today is all about you, princess! 👸💖</p>
+        </div>
+        
+        <!-- Single Large Photo Section -->
+        <div class="single-photo-section">
+            <h2 class="photo-title animate">
+                <i class="fas fa-heart"></i> Our Special Memory <i class="fas fa-heart"></i>
+            </h2>
+            
+            <div class="main-photo-frame animate">
+                <!-- REPLACE THIS WITH YOUR PHOTO -->
+                <img src="IMG_20260113_012323_467.jpg" alt="Our Special Memory">
+                <div class="photo-caption">Our Beautiful Memory Together 💖</div>
+                
+                <!-- If no photo is added, this placeholder will show -->
+                <div class="photo-placeholder" id="photoPlaceholder">
+                    <i class="fas fa-camera"></i>
+                    <p>Add Your Special Photo Here</p>
+                    <p style="font-size: 1rem; opacity: 0.9;">(Replace the image URL above)</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Birthday Message -->
+        <div class="message-card animate">
+            <h2><i class="fas fa-gift"></i> My Birthday Wish For You</h2>
+            <div class="message-text">
+                <p>My dearest love,</p>
+                <p>Nange gothirilla ninnu nan girlfriend agthiya antha bari assignments ge bartha idhe henge gothilla nannu ninge attach agodhe ✨</p>
+                <p>Howdu nange ethara vishaya nali careless idhini nange yenu gothilla ninne yala helkodbeku nange.....nam maklu mammaklu adru ninnu nan jothe idu helkodbeku nange kopa jasthi adjust madko 🎀</p>
+                <p>Matte nin birthday dina disappoint madalla sorry papu</p>
+                <p>Happy Birthday My love sorry for all the disappointments and mistakes I've made. I love you more than words can express! 💞</p>
+            </div>
+            <div class="signature">
+                With all my love,<br>
+                Your boyfriend forever
+            </div>
+        </div>
+        
+        <!-- Apology Section -->
+        <div class="apology-card animate">
+            <h2><i class="fas fa-heart-broken"></i> A Heartfelt Sorry</h2>
+            <div class="message-text">
+                <p>Papu my love nan beku antha madilla nannu nale suprise kodana antha idhe adre nim aji ge evathe husharu irilla amele nannu busy agbitte tution antha sorry😔</p>
+                <p>Howdu avage heldhage nija nin nan life nali bandmele yala change aythu aloneness oithu keta kansu bidodhu oithu olle kansu biloke shuru aythu yala nin idha 🤗</p>
+                <p>Sorry PAPU ninge gothu alva nannu yantha gandu...howdu ninnu nan karde idha thumba expectation idkonthiya adre nannu adukke bele kodtha ila sorry thank you papu nan yaste thap madidru nan jothe ne irthiya once again sorry.  💞</p>
+            </div>
+        </div>
+        
+        <!-- Surprise Button -->
+        <div class="surprise-section">
+            <button class="surprise-btn" id="surpriseBtn">
+                <i class="fas fa-star"></i> Click for a Birthday Surprise! <i class="fas fa-star"></i>
+            </button>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            Made with <i class="fas fa-heart" style="color:#ff4d8d;"></i> for the most amazing girlfriend in the universe<br>
+            Happy Birthday, my forever love! 🎂🎉💝
+        </div>
+    </div>
+
+    <script>
+        // Create floating hearts
+        function createHearts() {
+            const container = document.getElementById('heartsContainer');
+            const heartCount = 50;
+            
+            for (let i = 0; i < heartCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '❤️';
+                
+                // Random properties
+                const left = Math.random() * 100;
+                const size = Math.random() * 20 + 10;
+                const duration = Math.random() * 10 + 10;
+                const delay = Math.random() * 5;
+                
+                heart.style.left = `${left}vw`;
+                heart.style.fontSize = `${size}px`;
+                heart.style.animationDuration = `${duration}s`;
+                heart.style.animationDelay = `${delay}s`;
+                
+                // Random color
+                const colors = ['#ff4d8d', '#ff85ac', '#ff9ec0', '#ffb8d9'];
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
+                
+                container.appendChild(heart);
+            }
+        }
+        
+        // Check if photo is loaded
+        function checkPhoto() {
+            const photo = document.querySelector('.main-photo-frame img');
+            const placeholder = document.getElementById('photoPlaceholder');
+            
+            // If photo source is the placeholder URL, show placeholder
+            if (photo.src.includes('YOUR_PHOTO_URL_HERE') || photo.src === window.location.href) {
+                placeholder.style.display = 'flex';
+            } else {
+                placeholder.style.display = 'none';
+                
+                // Add loaded class for animation
+                setTimeout(() => {
+                    photo.style.opacity = '1';
+                    photo.style.transform = 'scale(1)';
+                }, 100);
+            }
+        }
+        
+        // Initialize page
+        window.addEventListener('load', function() {
+            createHearts();
+            checkPhoto();
+        });
+        
+        // Surprise button
+        const surpriseBtn = document.getElementById('surpriseBtn');
+        surpriseBtn.addEventListener('click', function() {
+            // Create floating hearts around the button
+            for (let i = 0; i < 20; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.innerHTML = '💖';
+                heart.style.position = 'fixed';
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.top = `${Math.random() * 100}vh`;
+                heart.style.fontSize = `${Math.random() * 30 + 20}px`;
+                heart.style.zIndex = '1000';
+                heart.style.animation = 'float 5s linear forwards';
+                
+                document.body.appendChild(heart);
+                
+                // Remove heart after animation
+                setTimeout(() => {
+                    heart.remove();
+                }, 5000);
+            }
+            
+            // Change button text temporarily
+            const originalText = surpriseBtn.innerHTML;
+            surpriseBtn.innerHTML = '<i class="fas fa-heart"></i> I Love You So Much! <i class="fas fa-heart"></i>';
+            surpriseBtn.style.background = 'linear-gradient(to right, #ff1493, #ff69b4)';
+            
+            setTimeout(() => {
+                surpriseBtn.innerHTML = originalText;
+                surpriseBtn.style.background = 'linear-gradient(to right, #ff4d8d, #ff9ec0)';
+            }, 3000);
+            
+            // Play a happy sound if available
+            const surpriseSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-happy-crowd-laugh-464.mp3');
+            surpriseSound.volume = 0.3;
+            surpriseSound.play().catch(e => console.log("Could not play surprise sound"));
+        });
+        
+        // Add animation to elements when scrolling
+        const observerOptions = {
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all message cards
+        document.querySelectorAll('.message-card, .apology-card, .photo-title, .main-photo-frame').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Photo frame click to show instructions
+        const mainPhotoFrame = document.querySelector('.main-photo-frame');
+        mainPhotoFrame.addEventListener('click', function() {
+            alert('💖 To add your photo:\n\n1. Find your favorite photo online\n2. Right-click and "Copy image address"\n3. Replace "YOUR_PHOTO_URL_HERE" with your photo URL\n\nExample: <img src="https://example.com/your-photo.jpg">');
+        });
+    </script>
+</body>
+</html>
